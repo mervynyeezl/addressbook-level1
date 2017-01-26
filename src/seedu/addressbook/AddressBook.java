@@ -447,7 +447,11 @@ public class AddressBook {
         final ArrayList<String[]> matchedPersons = new ArrayList<>();
         for (String[] person : getAllPersonsInAddressBook()) {
             final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
+            final Set<String> wordsInNameLower = new HashSet<>(splitByWhitespace(getNameFromPerson(person).toLowerCase()));
             if (!Collections.disjoint(wordsInName, keywords)) {
+                matchedPersons.add(person);
+            }
+            if (!Collections.disjoint(wordsInNameLower, keywords)) {
                 matchedPersons.add(person);
             }
         }
